@@ -29,7 +29,7 @@ const Testimonials = () => {
         }
     ]
     return (
-        <section className='my-24 px-12'>
+        <section className='my-24 strokeLinecap'>
             <div className='flex justify-between '>
                 <div>
                     <h4 className="text-xl text-primary font-bold">Testimonials</h4>

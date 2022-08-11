@@ -10,7 +10,7 @@ const Service = ({service}) => {
                 </figure>
                 <div class="card-body items-center text-center">
                     <h2 class="card-title">{name}</h2>
-                    <p>{description.slice(0,80)}</p>
+                    <p>{description.slice(0,75)}</p>
                 </div>
             </div>
         </div>

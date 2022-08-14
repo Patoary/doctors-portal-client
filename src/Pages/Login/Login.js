@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import auth from '../../../firebase.init';
+import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
-import Loading from '../../Shared/Loading';
+import Loading from '../Shared/Loading';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [
@@ -10,7 +11,7 @@ const Login = () => {
         user,
         loading,
         error,
-      ] = useSignInWithEmailAndPassword(auth);
+    ] = useSignInWithEmailAndPassword(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data)
@@ -19,16 +20,21 @@ const Login = () => {
 
     let signInError;
 
-    if(loading || gLoading){
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
+    if (loading || gLoading) {
         return <Loading></Loading>
     }
-    
-    if(error || gError){
+
+    if (error || gError) {
         signInError = <p className='text-red-500 text-center' ><small>{error?.message || gError.message}</small></p>
     }
 
-    if (gUser) {
-        console.log(gUser)
+    if (user || gUser) {
+        console.log(user || gUser)
+        navigate(from, { replace: true });
     }
     return (
         <div className='flex justify-center items-center h-screen'>
@@ -86,10 +92,11 @@ const Login = () => {
                             </label>
                         </div>
 
-                            {signInError}
+                        {signInError}
 
                         <input className='btn w-full w-xs' type="submit" value='Login' />
                     </form>
+                    <p className='text-center'><small>New to Doctors Portal? <Link to='/signup' className='text-secondary'>Create New Account</Link></small></p>
                     <div className="divider">OR</div>
                     <button
                         onClick={() => signInWithGoogle()}

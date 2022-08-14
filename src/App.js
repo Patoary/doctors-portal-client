@@ -8,21 +8,24 @@ import Login from './Pages/Login/Login';
 import Review from './Pages/Home/Review';
 import Navbar from './Pages/Shared/Navbar/Navbar';
 import SignUp from './Pages/Login/SignUp';
+import RequireAuth from './Pages/Login/RequireAuth';
 
 function App() {
   return (
     <div className='max-w-7xl mx-auto'>
       <Navbar></Navbar>
       <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path='/about' element={<About/>}></Route>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/about' element={<About />}></Route>
         <Route path='/appointment' element={
-         <Appointment/>
+          <RequireAuth>
+            <Appointment />
+          </RequireAuth>
         }></Route>
-        <Route path='/review' element={<Review/>}></Route>
-        <Route path='/contact' element={<ContactUs/>}></Route>
-        <Route path='/login' element={<Login/>}></Route>
-        <Route path='/signup' element={<SignUp/>}></Route>
+        <Route path='/review' element={<Review />}></Route>
+        <Route path='/contact' element={<ContactUs />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/signup' element={<SignUp />}></Route>
       </Routes>
     </div>
   );

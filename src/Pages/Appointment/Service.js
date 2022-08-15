@@ -1,13 +1,11 @@
 import React from 'react';
-import PrimaryButton from '../Shared/PrimaryButton';
-
 const Service = ({ service, setTreatment }) => {
     const { name, slots } = service;
     return (
         <service className='px-12'>
-            <div class="card lg:max-w-lg bg-base-100 shadow-xl">
-                <div class="card-body text-center">
-                    <h2 class="card-title text-secondary mx-auto">{name}</h2>
+            <div className="card lg:max-w-lg bg-base-100 shadow-xl">
+                <div className="card-body text-center">
+                    <h2 className="card-title text-secondary mx-auto">{name}</h2>
                     <p>{
                         slots.length > 0
                             ? <span>{slots[0]}</span>
@@ -16,8 +14,8 @@ const Service = ({ service, setTreatment }) => {
 
                     }</p>
                     <p>{slots.length} {slots.length > 1 ? 'Spaces' : 'Space'} Available</p>
-                    <div class="card-actions justify-center" >
-                        <label for="booking-modal"
+                    <div className="card-actions justify-center" >
+                        <label htmlFor="booking-modal"
                             onClick={() => setTreatment(service)}
                             disabled={slots.length === 0}
                             className='btn btn-primary text-white font-bold bg-gradient-to-r from-secondary to-primary'>Book Appointment</label>

@@ -28,8 +28,8 @@ const MyAppointments = () => {
     </thead>
     <tbody>
         {
-            appointments.map(appointment => <tr className='hover'>
-                <th>1</th>
+            appointments.map((appointment, index) => <tr className='hover'>
+                <th>{index + 1}</th>
                 <td>{appointment.patientName}</td>
                 <td>{appointment.date}</td>
                 <td>{appointment.slot}</td>

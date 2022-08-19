@@ -1,4 +1,3 @@
-import { toHaveStyle } from '@testing-library/jest-dom/dist/matchers';
 import React from 'react';
 import {toast} from 'react-toastify';
 const UserRow = ({user, index, refetch}) => {
@@ -10,10 +9,17 @@ const UserRow = ({user, index, refetch}) => {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-        .then(res => res.json())
+        .then(res => {
+            if(res.status === 403){
+                toast.error('Failed to make an admin');
+            }
+           return res.json()
+        })
         .then(data => {
-            refetch()
-            toast('Successfully made an admin')
+           if(data.modifiedCount > 0){
+               refetch();
+               toast.success('Successfully made an admin');
+           }
         })
     }
     return (

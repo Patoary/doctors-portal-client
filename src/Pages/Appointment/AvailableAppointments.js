@@ -10,7 +10,7 @@ const AvailableAppointments = ({date}) => {
     const [treatment, setTreatment] = useState(null);
     const formattedDate = format(date, 'PP');
     const {  data:services, isLoading, refetch } = useQuery(['available', formattedDate], () =>
-    fetch(`http://localhost:4000/available?date=${formattedDate}`)
+    fetch(`https://tranquil-headland-79943.herokuapp.com/available?date=${formattedDate}`)
     .then(res => res.json())
       
     )
@@ -19,7 +19,7 @@ const AvailableAppointments = ({date}) => {
     }
 
     // useEffect( () =>{
-    //     fetch(`http://localhost:4000/available?date=${formattedDate}`)
+    //     fetch(`https://tranquil-headland-79943.herokuapp.com/available?date=${formattedDate}`)
     //     .then(res => res.json())
     //     .then(data => setServices(data))
     // },[formattedDate]);

@@ -8,7 +8,7 @@ import UserRow from './UserRow';
 
 const Users = () => {
     const navigate = useNavigate();
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:4000/user', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://tranquil-headland-79943.herokuapp.com/user', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

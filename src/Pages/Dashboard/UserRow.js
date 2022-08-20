@@ -3,7 +3,7 @@ import {toast} from 'react-toastify';
 const UserRow = ({user, index, refetch}) => {
     const {email, role} = user;
     const makeAdmin = () =>{
-        fetch(`http://localhost:4000/user/admin/${email}`,{
+        fetch(`https://tranquil-headland-79943.herokuapp.com/user/admin/${email}`,{
             method: 'PUT',
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

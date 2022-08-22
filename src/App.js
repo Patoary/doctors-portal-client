@@ -17,7 +17,7 @@ import MyReview from './Pages/Dashboard/MyReview';
 import MyHistory from './Pages/Dashboard/MyHistory';
 import Users from './Pages/Dashboard/Users';
 import RequireAdmin from './Pages/Login/RequireAdmin';
-
+import AddDoctors from './Pages/Dashboard/AddDoctors';
 function App() {
   return (
     <div className='max-w-7xl mx-auto'>
@@ -35,6 +35,7 @@ function App() {
           <Route path='review' element={<MyReview/>}></Route>
         <Route path='history' element={<MyHistory/>}></Route>
         <Route path='users' element={<RequireAdmin><Users/> </RequireAdmin>}></Route>
+        <Route path='addDoctor' element={<RequireAdmin><AddDoctors/> </RequireAdmin>}></Route>
         </Route>
         <Route path='review' element={<Review />}></Route>
         <Route path='contact' element={<ContactUs />}></Route>

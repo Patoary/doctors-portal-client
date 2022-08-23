@@ -23,7 +23,7 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
         }
         console.log(booking)
 
-        fetch('https://tranquil-headland-79943.herokuapp.com/booking',{
+        fetch('http://localhost:4000/booking',{
             method: 'POST',
             headers:{
                 'content-type': 'application/json'
@@ -43,7 +43,7 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
         setTreatment(null);
         })
 
-    }
+    };
     return (
         <div>
 

@@ -7,9 +7,10 @@ const CheckoutForm = ({appointment}) => {
     const [cardError, setCardError] = useState('');
     const [success , setSuccess ] = useState('');
     const [transactionId , setTransactionId ] = useState('');
+    const [processing , setProcessing ] = useState(false);
     const [clientSecret, setClientSecret] = useState('');
 
-    const {price, patient, patientName} = appointment;
+    const {_id, price, patient, patientName} = appointment;
 
     useEffect(()=>{
         fetch('http://localhost:4000/create-payment-intent', {
@@ -49,6 +50,7 @@ const CheckoutForm = ({appointment}) => {
             setCardError('');
         };
         setSuccess('');
+        setProcessing(true);
 
         // confirm card payment
         const {paymentIntent, error: intentError} = await stripe.confirmCardPayment(
@@ -64,12 +66,34 @@ const CheckoutForm = ({appointment}) => {
             },
           );
             if(intentError){
-                setCardError(intentError?.message)
+                setCardError(intentError?.message);
+                setProcessing(false);
             }else{
                 setCardError('');
                 setTransactionId(paymentIntent.id);
                 console.log(paymentIntent);
                 setSuccess('Congrats! Your payment is completed.')
+
+                // store payment on database
+                const payment ={
+                    appointment: _id,
+                    transactionId: paymentIntent.id
+                }
+            
+
+                fetch(`http://localhost:4000/booking/${_id}`, {
+                    method: 'PATCH',
+                    headers:{
+                        'content-type': 'application/json',
+                        'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                    },
+                    body: JSON.stringify(payment)
+                })
+                .then(res=> res.json())
+                .then(data => {
+                    setProcessing(false);
+                    console.log(data)
+                })
             }
 
     }

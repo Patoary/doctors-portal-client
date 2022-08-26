@@ -19,12 +19,12 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
             slot,
             price,
             patient:user.email,
-            patientName:user.displayName,
+            patientName:user?.displayName,
             phone: event.target.phone.value,
         }
         console.log(booking)
 
-        fetch('http://localhost:4000/booking',{
+        fetch('https://tranquil-headland-79943.herokuapp.com/booking',{
             method: 'POST',
             headers:{
                 'content-type': 'application/json'

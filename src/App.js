@@ -5,7 +5,6 @@ import Appointment from './Pages/Appointment/Appointment';
 import ContactUs from './Pages/ContactUs/ContactUs';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
-import Review from './Pages/Home/Review';
 import Navbar from './Pages/Shared/Navbar/Navbar';
 import SignUp from './Pages/Login/SignUp';
 import RequireAuth from './Pages/Login/RequireAuth';
@@ -20,6 +19,7 @@ import RequireAdmin from './Pages/Login/RequireAdmin';
 import AddDoctors from './Pages/Dashboard/AddDoctors';
 import ManageDoctors from './Pages/Dashboard/ManageDoctors';
 import Payment from './Pages/Dashboard/Payment';
+import Review from './Pages/Home/Review';
 function App() {
   return (
     <div className='max-w-7xl mx-auto'>

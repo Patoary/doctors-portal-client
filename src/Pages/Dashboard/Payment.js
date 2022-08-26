@@ -10,7 +10,7 @@ const stripePromise = loadStripe('pk_test_51LaKKLF5F0rQ849D8uHdutCmqIwtTGDp0Z85A
 
 const Payment = () => {
     const { id } = useParams();
-    const url = `http://localhost:4000/booking/${id}`;
+    const url = `https://tranquil-headland-79943.herokuapp.com/booking/${id}`;
 
     const { data: appointment, isLoading } = useQuery(['booking', id], () => fetch(url, {
         method: 'GET',
@@ -18,7 +18,6 @@ const Payment = () => {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()));
-
     if (isLoading) {
         return <Loading></Loading>
     }

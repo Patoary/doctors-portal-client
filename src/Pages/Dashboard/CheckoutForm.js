@@ -13,7 +13,7 @@ const CheckoutForm = ({appointment}) => {
     const {_id, price, patient, patientName} = appointment;
 
     useEffect(()=>{
-        fetch('http://localhost:4000/create-payment-intent', {
+        fetch('https://tranquil-headland-79943.herokuapp.com/create-payment-intent', {
             method:'POST',
             headers:{
                 'content-type': 'application/json',
@@ -81,7 +81,7 @@ const CheckoutForm = ({appointment}) => {
                 }
             
 
-                fetch(`http://localhost:4000/booking/${_id}`, {
+                fetch(`https://tranquil-headland-79943.herokuapp.com/booking/${_id}`, {
                     method: 'PATCH',
                     headers:{
                         'content-type': 'application/json',
@@ -93,8 +93,10 @@ const CheckoutForm = ({appointment}) => {
                 .then(data => {
                     setProcessing(false);
                     console.log(data)
-                })
-            }
+                });
+
+            };
+
 
     }
     return (
@@ -116,7 +118,7 @@ const CheckoutForm = ({appointment}) => {
                         },
                     }}
                 />
-                <button className='btn btn-success btn-sm' type="submit" disabled={!stripe || !clientSecret}>
+                <button className='btn btn-success btn-sm' type="submit" disabled={!stripe || !clientSecret || success}>
                     Pay
                 </button>
             </form>

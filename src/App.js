@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './Pages/About/About';
 import Appointment from './Pages/Appointment/Appointment';
-import ContactUs from './Pages/ContactUs/ContactUs';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import Navbar from './Pages/Shared/Navbar/Navbar';
@@ -44,7 +43,6 @@ function App() {
 
         </Route>
         <Route path='review' element={<Review />}></Route>
-        <Route path='contact' element={<ContactUs />}></Route>
         <Route path='login' element={<Login />}></Route>
         <Route path='signup' element={<SignUp />}></Route>
       </Routes>
